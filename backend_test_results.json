@@ -1,10 +1,10 @@
 {
   "summary": {
-    "total_tests": 14,
-    "passed_tests": 11,
-    "failed_tests": 3,
-    "success_rate": 78.57142857142857,
-    "test_timestamp": "2025-12-01T21:54:07.285897",
+    "total_tests": 17,
+    "passed_tests": 17,
+    "failed_tests": 0,
+    "success_rate": 100.0,
+    "test_timestamp": "2025-12-01T21:54:43.519418",
     "backend_url": "https://batlama-template.preview.emergentagent.com",
     "test_user": "test@batlama.com"
   },
@@ -14,98 +14,119 @@
       "success": true,
       "details": "User role: super_admin",
       "error": "",
-      "timestamp": "2025-12-01T21:54:06.634390"
+      "timestamp": "2025-12-01T21:54:42.783322"
     },
     {
       "test_name": "Dashboard stats",
       "success": true,
       "details": "Stats loaded: ['total_inspections', 'total_payments', 'total_licenses', 'pending_workplans', 'recent_inspections', 'total_constructions', 'total_companies', 'laboratory_companies', 'concrete_companies']",
       "error": "",
-      "timestamp": "2025-12-01T21:54:06.677455"
+      "timestamp": "2025-12-01T21:54:42.829518"
     },
     {
       "test_name": "Get constructions list",
       "success": true,
       "details": "Found 0 constructions",
       "error": "",
-      "timestamp": "2025-12-01T21:54:06.719104"
+      "timestamp": "2025-12-01T21:54:42.870744"
     },
     {
       "test_name": "Search constructions",
       "success": true,
       "details": "Search results: 0",
       "error": "",
-      "timestamp": "2025-12-01T21:54:06.762211"
+      "timestamp": "2025-12-01T21:54:42.913716"
     },
     {
       "test_name": "Get inspections list",
       "success": true,
-      "details": "Found 0 inspections",
+      "details": "Found 2 inspections",
       "error": "",
-      "timestamp": "2025-12-01T21:54:06.798822"
+      "timestamp": "2025-12-01T21:54:42.954613"
     },
     {
       "test_name": "Create inspection",
-      "success": false,
-      "details": "Creation attempted",
+      "success": true,
+      "details": "Created inspection ID: fe630164-68d6-4628-a19e-23ee83d7c5e2",
       "error": "",
-      "timestamp": "2025-12-01T21:54:06.866267"
+      "timestamp": "2025-12-01T21:54:43.031401"
     },
     {
       "test_name": "Get payments list",
       "success": true,
-      "details": "Found 0 payments",
+      "details": "Found 1 payments",
       "error": "",
-      "timestamp": "2025-12-01T21:54:06.909808"
+      "timestamp": "2025-12-01T21:54:43.071406"
     },
     {
       "test_name": "Create payment",
-      "success": false,
-      "details": "Creation attempted",
+      "success": true,
+      "details": "Created payment ID: 85ba84a9-c8e3-480f-b0ee-6ac47218519b",
       "error": "",
-      "timestamp": "2025-12-01T21:54:07.004690"
+      "timestamp": "2025-12-01T21:54:43.111928"
     },
     {
       "test_name": "Get licenses list",
       "success": true,
-      "details": "Found 0 licenses",
+      "details": "Found 1 licenses",
       "error": "",
-      "timestamp": "2025-12-01T21:54:07.049845"
+      "timestamp": "2025-12-01T21:54:43.151772"
     },
     {
       "test_name": "Create license",
-      "success": false,
-      "details": "Creation attempted",
+      "success": true,
+      "details": "Created license ID: 68a3864e-a85c-4701-944d-8e24e05aae3f",
       "error": "",
-      "timestamp": "2025-12-01T21:54:07.114446"
+      "timestamp": "2025-12-01T21:54:43.191191"
     },
     {
       "test_name": "Get work plans list",
       "success": true,
       "details": "Found 0 work plans",
       "error": "",
-      "timestamp": "2025-12-01T21:54:07.151660"
+      "timestamp": "2025-12-01T21:54:43.228867"
     },
     {
       "test_name": "Get users list",
       "success": true,
       "details": "Found 1 users",
       "error": "",
-      "timestamp": "2025-12-01T21:54:07.203415"
+      "timestamp": "2025-12-01T21:54:43.270791"
     },
     {
       "test_name": "Get companies list",
       "success": true,
       "details": "Found 0 companies",
       "error": "",
-      "timestamp": "2025-12-01T21:54:07.240553"
+      "timestamp": "2025-12-01T21:54:43.308539"
     },
     {
       "test_name": "Get activity logs",
       "success": true,
-      "details": "Found 4 activities",
+      "details": "Found 10 activities",
       "error": "",
-      "timestamp": "2025-12-01T21:54:07.285817"
+      "timestamp": "2025-12-01T21:54:43.355032"
+    },
+    {
+      "test_name": "Cleanup inspection",
+      "success": true,
+      "details": "Deleted inspection fe630164-68d6-4628-a19e-23ee83d7c5e2",
+      "error": "",
+      "timestamp": "2025-12-01T21:54:43.395566"
+    },
+    {
+      "test_name": "Cleanup payment",
+      "success": true,
+      "details": "Deleted payment 85ba84a9-c8e3-480f-b0ee-6ac47218519b",
+      "error": "",
+      "timestamp": "2025-12-01T21:54:43.476947"
+    },
+    {
+      "test_name": "Cleanup license",
+      "success": true,
+      "details": "Deleted license 68a3864e-a85c-4701-944d-8e24e05aae3f",
+      "error": "",
+      "timestamp": "2025-12-01T21:54:43.519365"
     }
   ],
   "user_info": {
