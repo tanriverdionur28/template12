@@ -37,10 +37,10 @@ const Layout = ({ children }) => {
     { path: '/yilsonu-raporlar', label: 'Yıl Sonu Raporlar', icon: FileCheck },
     { path: '/activities', label: 'Aktivite Logları', icon: Activity },
     ...(user?.role !== 'user' ? [
-      { path: '/mesajlasma', label: 'Mesajlaşma', icon: MessageCircle }
+      { path: '/mesajlasma', label: 'Mesajlaşma', icon: MessageCircle },
+      { path: '/super-admin-reports', label: '⚠️ Eksiklik Raporları', icon: AlertCircle }
     ] : []),
     ...(user?.role === 'super_admin' ? [
-      { path: '/super-admin-reports', label: '⚠️ Eksiklik Raporları', icon: AlertCircle },
       { path: '/reports', label: 'Raporlar', icon: BarChart3 },
       { path: '/companies', label: 'Firmalar', icon: Building2 },
       { path: '/users', label: 'Kullanıcılar', icon: User }
