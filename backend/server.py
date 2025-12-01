@@ -1200,8 +1200,9 @@ async def delete_license(license_id: str, current_user: User = Depends(get_curre
 
 @api_router.get("/super-admin-reports", response_model=List[SuperAdminReport])
 async def get_super_admin_reports(current_user: User = Depends(get_current_user)):
-    if current_user.role != UserRole.SUPER_ADMIN:
-        raise HTTPException(status_code=403, detail="Bu raporları görmek için süper admin yetkisi gerekli")
+    # Admin ve SuperAdmin erişebilir
+    if current_user.role not in [UserRole.ADMIN, UserRole.SUPER_ADMIN]:
+        raise HTTPException(status_code=403, detail="Bu raporları görmek için admin veya süper admin yetkisi gerekli")
     
     reports = await db.super_admin_reports.find({}, {"_id": 0}).sort("reportedAt", -1).to_list(1000)
     for report in reports:
@@ -1213,8 +1214,9 @@ async def get_super_admin_reports(current_user: User = Depends(get_current_user)
 
 @api_router.put("/super-admin-reports/{report_id}/resolve")
 async def resolve_report(report_id: str, current_user: User = Depends(get_current_user)):
-    if current_user.role != UserRole.SUPER_ADMIN:
-        raise HTTPException(status_code=403, detail="Bu işlem için süper admin yetkisi gerekli")
+    # Admin ve SuperAdmin çözümleyebilir
+    if current_user.role not in [UserRole.ADMIN, UserRole.SUPER_ADMIN]:
+        raise HTTPException(status_code=403, detail="Bu işlem için admin veya süper admin yetkisi gerekli")
     
     result = await db.super_admin_reports.update_one(
         {"id": report_id},
