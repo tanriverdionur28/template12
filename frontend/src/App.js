@@ -1,77 +1,180 @@
-import { useState, useEffect } from "react";
-import "@/App.css";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Login from "@/pages/Login";
-import Dashboard from "@/pages/Dashboard";
+import React, { useEffect } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from '@/contexts/AuthContext';
+import { Toaster } from '@/components/ui/sonner';
+import Layout from '@/components/Layout';
+import Login from '@/pages/Login';
+import Register from '@/pages/Register';
+import Dashboard from '@/pages/Dashboard';
+import Constructions from '@/pages/Constructions';
+import Inspections from '@/pages/Inspections';
+import Payments from '@/pages/Payments';
+import WorkPlans from '@/pages/WorkPlans';
+import Licenses from '@/pages/Licenses';
+import Activities from '@/pages/Activities';
+import Users from '@/pages/Users';
+import Reports from '@/pages/Reports';
+import Companies from '@/pages/Companies';
+import HakedisEvrak from '@/pages/HakedisEvrak';
+import Mesajlasma from '@/pages/Mesajlasma';
+import AylikRaporlar from '@/pages/AylikRaporlar';
+import YilSonuRaporlar from '@/pages/YilSonuRaporlar';
 
-function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userEmail, setUserEmail] = useState("");
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Check if user is already logged in
-    const token = localStorage.getItem("token");
-    const email = localStorage.getItem("user_email");
-    
-    if (token && email) {
-      setIsAuthenticated(true);
-      setUserEmail(email);
-    }
-    setLoading(false);
-  }, []);
-
-  const handleLogin = (email) => {
-    setIsAuthenticated(true);
-    setUserEmail(email);
-  };
-
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-    setUserEmail("");
-  };
+const PrivateRoute = ({ children }) => {
+  const { user, loading } = useAuth();
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-        <div className="text-white text-xl">Yükleniyor...</div>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-slate-600">Yükleniyor...</div>
       </div>
     );
   }
 
+  return user ? children : <Navigate to="/login" />;
+};
+
+const PublicRoute = ({ children }) => {
+  const { user, loading } = useAuth();
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-slate-600">Yükleniyor...</div>
+      </div>
+    );
+  }
+
+  return user ? <Navigate to="/dashboard" /> : children;
+};
+
+const AppRoutes = () => {
   return (
-    <div className="App">
+    <Routes>
+      <Route path="/login" element={
+        <PublicRoute>
+          <Login />
+        </PublicRoute>
+      } />
+      <Route path="/dashboard" element={
+        <PrivateRoute>
+          <Layout>
+            <Dashboard />
+          </Layout>
+        </PrivateRoute>
+      } />
+      <Route path="/constructions" element={
+        <PrivateRoute>
+          <Layout>
+            <Constructions />
+          </Layout>
+        </PrivateRoute>
+      } />
+      <Route path="/inspections" element={
+        <PrivateRoute>
+          <Layout>
+            <Inspections />
+          </Layout>
+        </PrivateRoute>
+      } />
+      <Route path="/payments" element={
+        <PrivateRoute>
+          <Layout>
+            <Payments />
+          </Layout>
+        </PrivateRoute>
+      } />
+      <Route path="/workplans" element={
+        <PrivateRoute>
+          <Layout>
+            <WorkPlans />
+          </Layout>
+        </PrivateRoute>
+      } />
+      <Route path="/licenses" element={
+        <PrivateRoute>
+          <Layout>
+            <Licenses />
+          </Layout>
+        </PrivateRoute>
+      } />
+      <Route path="/activities" element={
+        <PrivateRoute>
+          <Layout>
+            <Activities />
+          </Layout>
+        </PrivateRoute>
+      } />
+      <Route path="/users" element={
+        <PrivateRoute>
+          <Layout>
+            <Users />
+          </Layout>
+        </PrivateRoute>
+      } />
+      <Route path="/reports" element={
+        <PrivateRoute>
+          <Layout>
+            <Reports />
+          </Layout>
+        </PrivateRoute>
+      } />
+      <Route path="/companies" element={
+        <PrivateRoute>
+          <Layout>
+            <Companies />
+          </Layout>
+        </PrivateRoute>
+      } />
+      <Route path="/hakedis-evrak" element={
+        <PrivateRoute>
+          <Layout>
+            <HakedisEvrak />
+          </Layout>
+        </PrivateRoute>
+      } />
+      <Route path="/mesajlasma" element={
+        <PrivateRoute>
+          <Layout>
+            <Mesajlasma />
+          </Layout>
+        </PrivateRoute>
+      } />
+      <Route path="/aylik-raporlar" element={
+        <PrivateRoute>
+          <Layout>
+            <AylikRaporlar />
+          </Layout>
+        </PrivateRoute>
+      } />
+      <Route path="/yilsonu-raporlar" element={
+        <PrivateRoute>
+          <Layout>
+            <YilSonuRaporlar />
+          </Layout>
+        </PrivateRoute>
+      } />
+      <Route path="/" element={<Navigate to="/dashboard" />} />
+    </Routes>
+  );
+};
+
+function App() {
+  useEffect(() => {
+    // Load Google Fonts
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+  }, []);
+
+  return (
+    <AuthProvider>
       <BrowserRouter>
-        <Routes>
-          <Route
-            path="/login"
-            element={
-              isAuthenticated ? (
-                <Navigate to="/dashboard" replace />
-              ) : (
-                <Login onLogin={handleLogin} />
-              )
-            }
-          />
-          <Route
-            path="/dashboard"
-            element={
-              isAuthenticated ? (
-                <Dashboard userEmail={userEmail} onLogout={handleLogout} />
-              ) : (
-                <Navigate to="/login" replace />
-              )
-            }
-          />
-          <Route
-            path="/"
-            element={
-              <Navigate to={isAuthenticated ? "/dashboard" : "/login"} replace />
-            }
-          />
-        </Routes>
+        <AppRoutes />
+        <Toaster position="top-right" richColors />
       </BrowserRouter>
-    </div>
+    </AuthProvider>
   );
 }
 
