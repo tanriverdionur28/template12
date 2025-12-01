@@ -7,10 +7,6 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    checkAuth();
-  }, []);
-
   const checkAuth = async () => {
     const token = localStorage.getItem('token');
     const savedUser = localStorage.getItem('user');
@@ -27,6 +23,11 @@ export const AuthProvider = ({ children }) => {
     }
     setLoading(false);
   };
+
+  useEffect(() => {
+    checkAuth();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const login = async (email, password) => {
     const response = await api.post('/auth/login', { email, password });
