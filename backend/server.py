@@ -574,6 +574,20 @@ class ConstructionCreate(BaseModel):
     guclendirmeRuhsat: Optional[str] = None
     ykeZorunluMu: Optional[str] = None
 
+class SuperAdminReport(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    reportType: str  # 'santiye_defteri' or 'belediye_proje_arsiv'
+    recordType: str  # 'inspection' or 'license'
+    recordId: str
+    yibfNo: Optional[str] = None
+    insaatIsmi: Optional[str] = None
+    projeType: Optional[str] = None  # mimari, statik, etc
+    message: str
+    isResolved: bool = False
+    reportedAt: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    resolvedAt: Optional[datetime] = None
+
 class Construction(BaseModel):
     model_config = ConfigDict(extra="ignore")
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
