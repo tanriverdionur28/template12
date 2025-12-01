@@ -841,6 +841,17 @@ async def create_inspection(input: SiteInspectionCreate, current_user: User = De
     
     await log_activity("saha_denetim", "create", f"Yeni saha denetimi oluşturuldu: {input.insaatIsmi}", current_user, inspection_obj.id)
     
+    # Şantiye defteri raporu
+    if not inspection_dict.get('santiyeDefteriBilgileriOnaylandi', False):
+        await create_super_admin_report(
+            report_type="santiye_defteri",
+            record_type="inspection",
+            record_id=inspection_obj.id,
+            message=f"Şantiye defteri bilgileri onaylanmadı",
+            yibf_no=input.yibfNo,
+            insaat_ismi=input.insaatIsmi
+        )
+    
     return inspection_obj
 
 @api_router.get("/inspections", response_model=List[SiteInspection])
