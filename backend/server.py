@@ -372,6 +372,7 @@ class LicenseProjectCreate(BaseModel):
     akustikOnaylandi: bool = False
     akustikOnaylanmamaNedeni: Optional[str] = None
     akustikDijitalArsiv: bool = False
+    akustikBelediyeOnayliProjeArsivlendi: bool = False
     # Diğer
     dijitalArsivTarihi: Optional[str] = None
     belediyeTeslimTarihi: Optional[str] = None
