@@ -16,7 +16,7 @@ import Users from '@/pages/Users';
 import Reports from '@/pages/Reports';
 import Companies from '@/pages/Companies';
 import HakedisEvrak from '@/pages/HakedisEvrak';
-import Mesajlasma from '@/pages/Mesajlasma';
+import Mesajlasma from '@/pages/MesajlasmaNew';
 import AylikRaporlar from '@/pages/AylikRaporlar';
 import YilSonuRaporlar from '@/pages/YilSonuRaporlar';
 import SuperAdminReports from '@/pages/SuperAdminReports';
