@@ -26,8 +26,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     checkAuth();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, []); // checkAuth is stable, no deps needed
 
   const login = async (email, password) => {
     const response = await api.post('/auth/login', { email, password });
