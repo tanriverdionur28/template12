@@ -1857,7 +1857,6 @@ async def get_eksiklik_raporu(current_user: User = Depends(get_current_user)):
         
         if m2:
             try:
-                toplam_m2 = float(str(m2).replace(",", ""))
                 # Saha denetimlerini say (Optimized)
                 denetim_sayisi = await db.site_inspections.count_documents({"yibfNo": yibf})
                 # Basit ilerleme hesabı (her denetim %2 kabul edelim)
