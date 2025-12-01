@@ -39,6 +39,7 @@ const Layout = ({ children }) => {
       { path: '/mesajlasma', label: 'Mesajlaşma', icon: MessageCircle }
     ] : []),
     ...(user?.role === 'super_admin' ? [
+      { path: '/super-admin-reports', label: '⚠️ Eksiklik Raporları', icon: AlertCircle },
       { path: '/reports', label: 'Raporlar', icon: BarChart3 },
       { path: '/companies', label: 'Firmalar', icon: Building2 },
       { path: '/users', label: 'Kullanıcılar', icon: User }
