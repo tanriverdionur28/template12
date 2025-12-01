@@ -538,6 +538,22 @@ const Licenses = () => {
                           onChange={(val) => setFormData({...formData, [`${key}DijitalArsiv`]: val})} 
                         />
                       </div>
+                      
+                      {/* Belediye Onaylı Proje Arşivleme */}
+                      <div className="bg-amber-50 p-3 rounded border border-amber-300 mb-3">
+                        <CheckboxField 
+                          id={`${key}BelediyeOnayliProjeArsivlendi`} 
+                          label="📄 Belediye onaylı proje arşivlendi mi?" 
+                          checked={formData[`${key}BelediyeOnayliProjeArsivlendi`]} 
+                          onChange={(val) => setFormData({...formData, [`${key}BelediyeOnayliProjeArsivlendi`]: val})} 
+                        />
+                        {!formData[`${key}BelediyeOnayliProjeArsivlendi`] && (
+                          <p className="text-xs text-amber-700 mt-2 ml-6">
+                            ⚠️ Arşivlenmedi. Kayıt sonrası Süper Admin'e bildirilecek.
+                          </p>
+                        )}
+                      </div>
+
                       {!formData[`${key}Onaylandi`] && (
                         <div className="space-y-2">
                           <Label htmlFor={`${key}OnaylanmamaNedeni`}>Onaylanmama Nedeni</Label>
