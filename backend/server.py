@@ -1106,6 +1106,31 @@ async def create_license(input: LicenseProjectCreate, current_user: User = Depen
     
     await log_activity("ruhsat", "create", f"Yeni ruhsat kaydı oluşturuldu: {input.insaatIsmi}", current_user, license_obj.id)
     
+    # Belediye onaylı proje arşivleme raporları
+    proje_types = [
+        ('mimari', 'Mimari'),
+        ('statik', 'Statik'),
+        ('mekanik', 'Mekanik'),
+        ('elektrik', 'Elektrik'),
+        ('tasDuvar', 'Taş Duvar'),
+        ('iskele', 'İskele'),
+        ('zeminEtut', 'Zemin Etüt'),
+        ('akustik', 'Akustik')
+    ]
+    
+    for key, label in proje_types:
+        field_name = f'{key}BelediyeOnayliProjeArsivlendi'
+        if not license_dict.get(field_name, False):
+            await create_super_admin_report(
+                report_type="belediye_proje_arsiv",
+                record_type="license",
+                record_id=license_obj.id,
+                message=f"{label} projesi için belediye onaylı proje arşivlenmedi",
+                yibf_no=input.yibfNo,
+                insaat_ismi=input.insaatIsmi,
+                proje_type=label
+            )
+    
     return license_obj
 
 @api_router.get("/licenses", response_model=List[LicenseProject])
