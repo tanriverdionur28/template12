@@ -78,10 +78,10 @@ const SuperAdminReports = () => {
     <div className="container mx-auto p-6 max-w-7xl">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-slate-900" data-testid="reports-title">
-          Süper Admin Raporları
+          Eksiklik Raporları
         </h1>
         <p className="text-slate-600 mt-2">
-          Şantiye defteri ve belediye onaylı proje arşivleme eksiklikleri
+          Şantiye defteri ve belediye onaylı proje arşivleme eksiklikleri - Admin & Süper Admin
         </p>
       </div>
 
