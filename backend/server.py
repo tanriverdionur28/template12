@@ -1193,6 +1193,36 @@ async def delete_license(license_id: str, current_user: User = Depends(get_curre
     
     return {"message": "Başarıyla silindi"}
 
+# ==================== SUPER ADMIN REPORTS ====================
+
+@api_router.get("/super-admin-reports", response_model=List[SuperAdminReport])
+async def get_super_admin_reports(current_user: User = Depends(get_current_user)):
+    if current_user.role != UserRole.SUPER_ADMIN:
+        raise HTTPException(status_code=403, detail="Bu raporları görmek için süper admin yetkisi gerekli")
+    
+    reports = await db.super_admin_reports.find({}, {"_id": 0}).sort("reportedAt", -1).to_list(1000)
+    for report in reports:
+        if isinstance(report.get('reportedAt'), str):
+            report['reportedAt'] = datetime.fromisoformat(report['reportedAt'])
+        if report.get('resolvedAt') and isinstance(report['resolvedAt'], str):
+            report['resolvedAt'] = datetime.fromisoformat(report['resolvedAt'])
+    return reports
+
+@api_router.put("/super-admin-reports/{report_id}/resolve")
+async def resolve_report(report_id: str, current_user: User = Depends(get_current_user)):
+    if current_user.role != UserRole.SUPER_ADMIN:
+        raise HTTPException(status_code=403, detail="Bu işlem için süper admin yetkisi gerekli")
+    
+    result = await db.super_admin_reports.update_one(
+        {"id": report_id},
+        {"$set": {"isResolved": True, "resolvedAt": datetime.now(timezone.utc).isoformat()}}
+    )
+    
+    if result.modified_count == 0:
+        raise HTTPException(status_code=404, detail="Rapor bulunamadı")
+    
+    return {"message": "Rapor çözüldü olarak işaretlendi"}
+
 # ==================== ACTIVITY LOGS ====================
 
 @api_router.get("/activities", response_model=List[ActivityLog])
