@@ -17,6 +17,86 @@ import { useAuth } from '@/contexts/AuthContext';
 moment.locale('tr');
 const localizer = momentLocalizer(moment);
 
+// Custom toolbar component
+const CustomToolbar = (props) => {
+  const { label, onNavigate, onView, view } = props;
+  return (
+    <div className="flex items-center justify-between mb-4 pb-4 border-b">
+      <div className="flex items-center gap-2">
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            onNavigate('PREV');
+          }}
+          className="px-3 py-1.5 text-sm border border-slate-300 rounded-md hover:bg-slate-100 text-slate-700"
+        >
+          Önceki
+        </button>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            onNavigate('TODAY');
+          }}
+          className="px-3 py-1.5 text-sm border border-slate-300 rounded-md hover:bg-slate-100 text-slate-700"
+        >
+          Bugün
+        </button>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            onNavigate('NEXT');
+          }}
+          className="px-3 py-1.5 text-sm border border-slate-300 rounded-md hover:bg-slate-100 text-slate-700"
+        >
+          Sonraki
+        </button>
+      </div>
+      <h2 className="text-lg font-semibold text-slate-900">{label}</h2>
+      <div className="flex items-center gap-2">
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            onView('month');
+          }}
+          className={`px-3 py-1.5 text-sm rounded-md ${
+            view === 'month' 
+              ? 'bg-slate-800 text-white' 
+              : 'border border-slate-300 text-slate-700 hover:bg-slate-100'
+          }`}
+        >
+          Ay
+        </button>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            onView('week');
+          }}
+          className={`px-3 py-1.5 text-sm rounded-md ${
+            view === 'week' 
+              ? 'bg-slate-800 text-white' 
+              : 'border border-slate-300 text-slate-700 hover:bg-slate-100'
+          }`}
+        >
+          Hafta
+        </button>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            onView('day');
+          }}
+          className={`px-3 py-1.5 text-sm rounded-md ${
+            view === 'day' 
+              ? 'bg-slate-800 text-white' 
+              : 'border border-slate-300 text-slate-700 hover:bg-slate-100'
+          }`}
+        >
+          Gün
+        </button>
+      </div>
+    </div>
+  );
+};
+
 const WorkPlans = () => {
   const { user } = useAuth();
   const [workplans, setWorkplans] = useState([]);
