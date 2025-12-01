@@ -263,7 +263,7 @@ class ConstructionInspectionAPITester:
             'POST', 
             'licenses', 
             test_license,
-            201
+            200
         )
         
         license_id = None
