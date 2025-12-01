@@ -58,6 +58,7 @@ const Inspections = () => {
     betonFirma: '',
     ileriTarihliBetonDokumSaati: '',
     teslimAlindi: 'beklemede',
+    santiyeDefteriBilgileriOnaylandi: false,
     teslimAlinmamaAciklamasi: '',
     kontrolFotograflari: '',
     betonDokumFotograflari: ''
