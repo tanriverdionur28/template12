@@ -156,13 +156,6 @@ const HakedisEvrak = () => {
     }
   };
 
-  const CheckboxField = ({ id, label, checked, onChange }) => (
-    <div className="flex items-center space-x-2">
-      <Checkbox id={id} checked={checked} onCheckedChange={onChange} />
-      <label htmlFor={id} className="text-sm font-medium leading-none cursor-pointer">{label}</label>
-    </div>
-  );
-
   const canEdit = user?.role === 'super_admin' || user?.role === 'admin';
 
   if (loading) {
