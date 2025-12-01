@@ -155,6 +155,13 @@ const AppRoutes = () => {
           </Layout>
         </PrivateRoute>
       } />
+      <Route path="/super-admin-reports" element={
+        <PrivateRoute>
+          <Layout>
+            <SuperAdminReports />
+          </Layout>
+        </PrivateRoute>
+      } />
       <Route path="/" element={<Navigate to="/dashboard" />} />
     </Routes>
   );
