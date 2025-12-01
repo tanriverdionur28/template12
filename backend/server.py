@@ -262,10 +262,12 @@ class LicenseProject(BaseModel):
     iskeleOnaylandi: bool = False
     iskeleOnaylanmamaNedeni: Optional[str] = None
     iskeleDijitalArsiv: bool = False
+    iskeleBelediyeOnayliProjeArsivlendi: bool = False
     zeminEtutDenetlendi: bool = False
     zeminEtutOnaylandi: bool = False
     zeminEtutOnaylanmamaNedeni: Optional[str] = None
     zeminEtutDijitalArsiv: bool = False
+    zeminEtutBelediyeOnayliProjeArsivlendi: bool = False
     akustikDenetlendi: bool = False
     akustikOnaylandi: bool = False
     akustikOnaylanmamaNedeni: Optional[str] = None
@@ -359,10 +361,12 @@ class LicenseProjectCreate(BaseModel):
     iskeleOnaylandi: bool = False
     iskeleOnaylanmamaNedeni: Optional[str] = None
     iskeleDijitalArsiv: bool = False
+    iskeleBelediyeOnayliProjeArsivlendi: bool = False
     zeminEtutDenetlendi: bool = False
     zeminEtutOnaylandi: bool = False
     zeminEtutOnaylanmamaNedeni: Optional[str] = None
     zeminEtutDijitalArsiv: bool = False
+    zeminEtutBelediyeOnayliProjeArsivlendi: bool = False
     akustikDenetlendi: bool = False
     akustikOnaylandi: bool = False
     akustikOnaylanmamaNedeni: Optional[str] = None
