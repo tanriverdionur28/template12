@@ -1798,6 +1798,24 @@ async def get_all_mesajlar(current_user: User = Depends(get_current_user)):
             m['createdAt'] = datetime.fromisoformat(m['createdAt'])
     return mesajlar
 
+@api_router.get("/mesajlar/user/{user_id}", response_model=List[Mesaj])
+async def get_mesajlar_by_user(user_id: str, current_user: User = Depends(get_current_user)):
+    if current_user.role not in [UserRole.ADMIN, UserRole.SUPER_ADMIN]:
+        raise HTTPException(status_code=403, detail="Erişim reddedildi")
+    
+    # Kullanıcı ile olan tüm mesajları getir (gönderen veya alıcı olarak)
+    mesajlar = await db.mesajlar.find({
+        "$or": [
+            {"gonderenId": current_user.id, "aliciId": user_id},
+            {"gonderenId": user_id, "aliciId": current_user.id}
+        ]
+    }, {"_id": 0}).sort("createdAt", 1).to_list(1000)
+    
+    for m in mesajlar:
+        if isinstance(m.get('createdAt'), str):
+            m['createdAt'] = datetime.fromisoformat(m['createdAt'])
+    return mesajlar
+
 @api_router.delete("/mesajlar/{mesaj_id}")
 async def delete_mesaj(mesaj_id: str, current_user: User = Depends(get_current_user)):
     if current_user.role != UserRole.SUPER_ADMIN:
