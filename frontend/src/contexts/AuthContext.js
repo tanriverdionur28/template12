@@ -25,8 +25,26 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    checkAuth();
-  }, []); // checkAuth is stable, no deps needed
+    // Initial auth check on mount
+    const initAuth = async () => {
+      const token = localStorage.getItem('token');
+      const savedUser = localStorage.getItem('user');
+      
+      if (token && savedUser) {
+        try {
+          const response = await api.get('/auth/me');
+          setUser(response.data);
+        } catch (error) {
+          console.error('Auth check failed:', error);
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+        }
+      }
+      setLoading(false);
+    };
+    
+    initAuth();
+  }, []);
 
   const login = async (email, password) => {
     const response = await api.post('/auth/login', { email, password });
