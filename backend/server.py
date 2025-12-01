@@ -551,17 +551,20 @@ class YilSonuSeviyeRaporuCreate(BaseModel):
 class Mesaj(BaseModel):
     model_config = ConfigDict(extra="ignore")
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    projeId: str  # İlişkili license veya inspection ID
-    projeAdi: str
+    projeId: Optional[str] = None  # İlişkili inşaat ID (opsiyonel)
+    projeAdi: Optional[str] = None
     gonderenId: str
     gonderenAdi: str
     gonderenRol: str
+    aliciId: Optional[str] = None  # Özel mesaj için alıcı ID
+    aliciAdi: Optional[str] = None
     mesaj: str
     createdAt: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class MesajCreate(BaseModel):
-    projeId: str
-    projeAdi: str
+    projeId: Optional[str] = None
+    projeAdi: Optional[str] = None
+    aliciId: Optional[str] = None  # Özel mesaj için
     mesaj: str
 
 class ConstructionCreate(BaseModel):
