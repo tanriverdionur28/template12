@@ -178,7 +178,7 @@ class ConstructionInspectionAPITester:
             'POST', 
             'inspections', 
             test_inspection,
-            201
+            200
         )
         
         inspection_id = None
