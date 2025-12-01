@@ -92,6 +92,19 @@ const CustomToolbar = (props) => {
         >
           Gün
         </button>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            onView('agenda');
+          }}
+          className={`px-3 py-1.5 text-sm rounded-md ${
+            view === 'agenda' 
+              ? 'bg-slate-800 text-white' 
+              : 'border border-slate-300 text-slate-700 hover:bg-slate-100'
+          }`}
+        >
+          Ajanda
+        </button>
       </div>
     </div>
   );
