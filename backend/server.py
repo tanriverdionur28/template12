@@ -101,6 +101,59 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
 async def root():
     return {"message": "Hello World"}
 
+# Authentication routes
+@api_router.post("/auth/register", response_model=Token)
+async def register(user_data: UserRegister):
+    # Check if user already exists
+    existing_user = await db.users.find_one({"email": user_data.email})
+    if existing_user:
+        raise HTTPException(status_code=400, detail="Email already registered")
+    
+    # Create new user
+    user = User(
+        email=user_data.email,
+        password_hash=hash_password(user_data.password)
+    )
+    
+    doc = user.model_dump()
+    doc['created_at'] = doc['created_at'].isoformat()
+    
+    await db.users.insert_one(doc)
+    
+    # Create access token
+    access_token = create_access_token(
+        data={"sub": user.email},
+        expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    )
+    
+    return Token(access_token=access_token, token_type="bearer", user_email=user.email)
+
+@api_router.post("/auth/login", response_model=Token)
+async def login(user_data: UserLogin):
+    # Find user
+    user = await db.users.find_one({"email": user_data.email})
+    if not user:
+        raise HTTPException(status_code=401, detail="Invalid email or password")
+    
+    # Verify password
+    if not verify_password(user_data.password, user['password_hash']):
+        raise HTTPException(status_code=401, detail="Invalid email or password")
+    
+    # Create access token
+    access_token = create_access_token(
+        data={"sub": user['email']},
+        expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    )
+    
+    return Token(access_token=access_token, token_type="bearer", user_email=user['email'])
+
+@api_router.get("/auth/me")
+async def get_me(current_user: str = Depends(get_current_user)):
+    user = await db.users.find_one({"email": current_user}, {"_id": 0, "password_hash": 0})
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    return user
+
 @api_router.post("/status", response_model=StatusCheck)
 async def create_status_check(input: StatusCheckCreate):
     status_dict = input.model_dump()
