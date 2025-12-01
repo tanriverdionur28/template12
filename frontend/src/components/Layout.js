@@ -15,7 +15,8 @@ import {
   User,
   Building2,
   BarChart3,
-  MessageCircle
+  MessageCircle,
+  AlertCircle
 } from 'lucide-react';
 
 const Layout = ({ children }) => {
