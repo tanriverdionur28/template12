@@ -1407,7 +1407,7 @@ async def update_hakedis_evrak(evrak_id: str, input: HakedisEvrakCreate, current
         updated['createdAt'] = datetime.fromisoformat(updated['createdAt'])
     if updated.get('updatedAt') and isinstance(updated['updatedAt'], str):
         updated['updatedAt'] = datetime.fromisoformat(updated['updatedAt'])
-    await log_activity("hakedis_evrak", "update", f"Hakediş evrak güncellendi", current_user, evrak_id)
+    await log_activity("hakedis_evrak", "update", "Hakediş evrak güncellendi", current_user, evrak_id)
     return HakedisEvrak(**updated)
 
 @api_router.delete("/hakedis-evrak/{evrak_id}")
