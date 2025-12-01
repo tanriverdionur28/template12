@@ -11,6 +11,7 @@ import api from '@/lib/api';
 import { toast } from 'sonner';
 import { KONTROL_BOLUM_OPTIONS } from '@/lib/constants';
 import { useAuth } from '@/contexts/AuthContext';
+import ConstructionCombobox from '@/components/ConstructionCombobox';
 
 const Inspections = () => {
   const { user } = useAuth();
