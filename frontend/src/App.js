@@ -19,6 +19,7 @@ import HakedisEvrak from '@/pages/HakedisEvrak';
 import Mesajlasma from '@/pages/Mesajlasma';
 import AylikRaporlar from '@/pages/AylikRaporlar';
 import YilSonuRaporlar from '@/pages/YilSonuRaporlar';
+import SuperAdminReports from '@/pages/SuperAdminReports';
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
