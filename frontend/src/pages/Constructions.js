@@ -120,7 +120,7 @@ const Constructions = () => {
           <h1 className="text-3xl font-bold text-slate-900" style={{fontFamily: 'Manrope, sans-serif'}}>
             İnşaat Listesi
           </h1>
-          <p className="text-slate-600 mt-1">YDS.CSB.GOV.TR'den indirilen inşaat kayıtlarını yönetin</p>
+          <p className="text-slate-600 mt-1">YDS.CSB.GOV.TR&apos;den indirilen inşaat kayıtlarını yönetin</p>
         </div>
         {isSuperAdmin && (
           <div className="flex gap-2">
