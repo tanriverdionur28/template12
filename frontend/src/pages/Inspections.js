@@ -310,26 +310,17 @@ const Inspections = () => {
               </div>
 
               {/* İnşaat Seçimi */}
-              <div className="space-y-2 bg-blue-50 p-4 rounded-lg border border-blue-200">
-                <Label>İnşaat Listesinden Seç (Otomatik Doldurma)</Label>
-                <Select onValueChange={handleConstructionSelect}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="İnşaat seçin..." />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {constructions.map((construction) => (
-                      <SelectItem key={construction.id} value={construction.id}>
-                        {construction.yibfNo} - {construction.isBaslik || 'İsimsiz'}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-                {selectedConstruction && (
-                  <p className="text-xs text-blue-600 mt-1">
-                    ✓ Seçildi: {selectedConstruction.isBaslik} ({selectedConstruction.ilce})
-                  </p>
-                )}
-              </div>
+              <ConstructionCombobox
+                constructions={constructions}
+                onSelect={(construction) => {
+                  if (construction) {
+                    handleConstructionSelect(construction.id);
+                  } else {
+                    setSelectedConstruction(null);
+                  }
+                }}
+                selectedConstruction={selectedConstruction}
+              />
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="space-y-2">
