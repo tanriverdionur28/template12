@@ -1765,11 +1765,19 @@ async def create_mesaj(input: MesajCreate, current_user: User = Depends(get_curr
     if current_user.role not in [UserRole.ADMIN, UserRole.SUPER_ADMIN]:
         raise HTTPException(status_code=403, detail="Mesajlaşma sadece Admin ve SuperAdmin için")
     
+    # Eğer alıcı ID varsa, alıcı bilgilerini getir
+    alici_adi = None
+    if input.aliciId:
+        alici = await db.users.find_one({"id": input.aliciId}, {"_id": 0})
+        if alici:
+            alici_adi = alici.get('name')
+    
     mesaj_obj = Mesaj(
         **input.model_dump(),
         gonderenId=current_user.id,
         gonderenAdi=current_user.name,
-        gonderenRol=current_user.role
+        gonderenRol=current_user.role,
+        aliciAdi=alici_adi
     )
     doc = mesaj_obj.model_dump()
     doc['createdAt'] = doc['createdAt'].isoformat()
