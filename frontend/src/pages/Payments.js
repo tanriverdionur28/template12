@@ -22,6 +22,7 @@ const Payments = () => {
   const [editingId, setEditingId] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [saving, setSaving] = useState(false);
+  const [selectedConstruction, setSelectedConstruction] = useState(null);
   
   const [formData, setFormData] = useState({
     insaatIsmi: '',
