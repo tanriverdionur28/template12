@@ -11,6 +11,7 @@ import { Plus, Edit, Trash2, Search, Loader2, FileCheck } from 'lucide-react';
 import api from '@/lib/api';
 import { toast } from 'sonner';
 import { useAuth } from '@/contexts/AuthContext';
+import ConstructionCombobox from '@/components/ConstructionCombobox';
 
 const CheckboxField = ({ id, label, checked, onChange }) => (
   <div className="flex items-center space-x-2">
