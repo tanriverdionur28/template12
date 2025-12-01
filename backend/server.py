@@ -667,6 +667,31 @@ async def log_activity(tip: str, aksiyon: str, aciklama: str, user: User, refera
     doc['createdAt'] = doc['createdAt'].isoformat()
     await db.activity_logs.insert_one(doc)
 
+async def create_super_admin_report(
+    report_type: str,
+    record_type: str,
+    record_id: str,
+    message: str,
+    yibf_no: Optional[str] = None,
+    insaat_ismi: Optional[str] = None,
+    proje_type: Optional[str] = None
+):
+    report = SuperAdminReport(
+        reportType=report_type,
+        recordType=record_type,
+        recordId=record_id,
+        yibfNo=yibf_no,
+        insaatIsmi=insaat_ismi,
+        projeType=proje_type,
+        message=message
+    )
+    doc = report.model_dump()
+    doc['reportedAt'] = doc['reportedAt'].isoformat()
+    if doc['resolvedAt']:
+        doc['resolvedAt'] = doc['resolvedAt'].isoformat()
+    await db.super_admin_reports.insert_one(doc)
+    return report
+
 # ==================== AUTH ENDPOINTS ====================
 
 @api_router.post("/auth/register", response_model=Token)
