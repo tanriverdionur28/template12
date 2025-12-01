@@ -192,13 +192,18 @@ const Payments = () => {
               <DialogTitle>{editingId ? 'Hakediş Düzenle' : 'Yeni Hakediş Ekle'}</DialogTitle>
             </DialogHeader>
             <form onSubmit={handleSubmit} className="space-y-4" data-testid="payment-form">
-              <div className="space-y-2 bg-blue-50 p-4 rounded-lg border border-blue-200">
-                <Label>İnşaat Listesinden Seç (Otomatik Doldurma)</Label>
-                <select className="w-full h-10 px-3 rounded-md border border-slate-300" onChange={(e) => handleConstructionSelect(e.target.value)}>
-                  <option value="">İnşaat seçin...</option>
-                  {constructions.map(c => (<option key={c.id} value={c.id}>{c.yibfNo} - {c.isBaslik || 'İsimsiz'}</option>))}
-                </select>
-              </div>
+              <ConstructionCombobox
+                constructions={constructions}
+                onSelect={(construction) => {
+                  if (construction) {
+                    handleConstructionSelect(construction.id);
+                    setSelectedConstruction(construction);
+                  } else {
+                    setSelectedConstruction(null);
+                  }
+                }}
+                selectedConstruction={selectedConstruction}
+              />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="insaatIsmi">İnşaat İsmi *</Label>
