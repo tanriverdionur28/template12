@@ -89,6 +89,7 @@ class SiteInspection(BaseModel):
     teslimAlinmamaAciklamasi: Optional[str] = None
     kontrolFotograflari: Optional[str] = None  # JSON string of URLs
     betonDokumFotograflari: Optional[str] = None  # JSON string of URLs
+    santiyeDefteriBilgileriOnaylandi: Optional[bool] = False
     createdBy: str
     createdByName: str
     updatedBy: Optional[str] = None
