@@ -12,6 +12,14 @@ import api from '@/lib/api';
 import { toast } from 'sonner';
 import { useAuth } from '@/contexts/AuthContext';
 
+// CheckboxField component defined outside
+const CheckboxField = ({ id, label, checked, onChange }) => (
+  <div className="flex items-center space-x-2">
+    <Checkbox id={id} checked={checked} onCheckedChange={onChange} />
+    <label htmlFor={id} className="text-sm font-medium leading-none cursor-pointer">{label}</label>
+  </div>
+);
+
 const HakedisEvrak = () => {
   const { user } = useAuth();
   const [evraklar, setEvraklar] = useState([]);
