@@ -1,21 +1,118 @@
 {
   "summary": {
-    "total_tests": 1,
-    "passed_tests": 0,
-    "failed_tests": 1,
-    "success_rate": 0.0,
-    "test_timestamp": "2025-12-01T21:53:36.915824",
+    "total_tests": 14,
+    "passed_tests": 11,
+    "failed_tests": 3,
+    "success_rate": 78.57142857142857,
+    "test_timestamp": "2025-12-01T21:54:07.285897",
     "backend_url": "https://batlama-template.preview.emergentagent.com",
     "test_user": "test@batlama.com"
   },
   "detailed_results": [
     {
       "test_name": "Login with test@batlama.com",
+      "success": true,
+      "details": "User role: super_admin",
+      "error": "",
+      "timestamp": "2025-12-01T21:54:06.634390"
+    },
+    {
+      "test_name": "Dashboard stats",
+      "success": true,
+      "details": "Stats loaded: ['total_inspections', 'total_payments', 'total_licenses', 'pending_workplans', 'recent_inspections', 'total_constructions', 'total_companies', 'laboratory_companies', 'concrete_companies']",
+      "error": "",
+      "timestamp": "2025-12-01T21:54:06.677455"
+    },
+    {
+      "test_name": "Get constructions list",
+      "success": true,
+      "details": "Found 0 constructions",
+      "error": "",
+      "timestamp": "2025-12-01T21:54:06.719104"
+    },
+    {
+      "test_name": "Search constructions",
+      "success": true,
+      "details": "Search results: 0",
+      "error": "",
+      "timestamp": "2025-12-01T21:54:06.762211"
+    },
+    {
+      "test_name": "Get inspections list",
+      "success": true,
+      "details": "Found 0 inspections",
+      "error": "",
+      "timestamp": "2025-12-01T21:54:06.798822"
+    },
+    {
+      "test_name": "Create inspection",
       "success": false,
-      "details": "Status: 500",
-      "error": "Login failed",
-      "timestamp": "2025-12-01T21:53:36.915785"
+      "details": "Creation attempted",
+      "error": "",
+      "timestamp": "2025-12-01T21:54:06.866267"
+    },
+    {
+      "test_name": "Get payments list",
+      "success": true,
+      "details": "Found 0 payments",
+      "error": "",
+      "timestamp": "2025-12-01T21:54:06.909808"
+    },
+    {
+      "test_name": "Create payment",
+      "success": false,
+      "details": "Creation attempted",
+      "error": "",
+      "timestamp": "2025-12-01T21:54:07.004690"
+    },
+    {
+      "test_name": "Get licenses list",
+      "success": true,
+      "details": "Found 0 licenses",
+      "error": "",
+      "timestamp": "2025-12-01T21:54:07.049845"
+    },
+    {
+      "test_name": "Create license",
+      "success": false,
+      "details": "Creation attempted",
+      "error": "",
+      "timestamp": "2025-12-01T21:54:07.114446"
+    },
+    {
+      "test_name": "Get work plans list",
+      "success": true,
+      "details": "Found 0 work plans",
+      "error": "",
+      "timestamp": "2025-12-01T21:54:07.151660"
+    },
+    {
+      "test_name": "Get users list",
+      "success": true,
+      "details": "Found 1 users",
+      "error": "",
+      "timestamp": "2025-12-01T21:54:07.203415"
+    },
+    {
+      "test_name": "Get companies list",
+      "success": true,
+      "details": "Found 0 companies",
+      "error": "",
+      "timestamp": "2025-12-01T21:54:07.240553"
+    },
+    {
+      "test_name": "Get activity logs",
+      "success": true,
+      "details": "Found 4 activities",
+      "error": "",
+      "timestamp": "2025-12-01T21:54:07.285817"
     }
   ],
-  "user_info": null
+  "user_info": {
+    "id": "39824c07-1a8c-49d8-85d3-7c5e461b308d",
+    "email": "test@batlama.com",
+    "name": "Test User",
+    "role": "super_admin",
+    "createdAt": "2025-12-01T21:54:01.712311Z"
+  }
 }
