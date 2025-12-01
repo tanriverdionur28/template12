@@ -120,6 +120,7 @@ class SiteInspectionCreate(BaseModel):
     teslimAlinmamaAciklamasi: Optional[str] = None
     kontrolFotograflari: Optional[str] = None
     betonDokumFotograflari: Optional[str] = None
+    santiyeDefteriBilgileriOnaylandi: Optional[bool] = False
 
 class ProgressPayment(BaseModel):
     model_config = ConfigDict(extra="ignore")
