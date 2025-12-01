@@ -265,7 +265,7 @@ const Constructions = () => {
           </CardHeader>
           <CardContent className="text-sm text-blue-800 space-y-2">
             <p>• YDS.CSB.GOV.TR adresinden DataGrid Excel dosyanızı indirin</p>
-            <p>• "Excel Yükle" butonuna tıklayarak dosyayı sisteme yükleyin</p>
+            <p>• &quot;Excel Yükle&quot; butonuna tıklayarak dosyayı sisteme yükleyin</p>
             <p>• Sistem otomatik olarak yeni kayıtları ekler ve mevcut kayıtları günceller</p>
             <p>• Yüklenen inşaat bilgileri, diğer modüllerde (Saha Denetimi, Hakediş, vb.) otomatik olarak kullanılabilir</p>
           </CardContent>
