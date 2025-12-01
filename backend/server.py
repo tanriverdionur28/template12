@@ -1877,7 +1877,7 @@ async def get_eksiklik_raporu(current_user: User = Depends(get_current_user)):
                             "sonHakedisYuzdesi": son_hakedis.get("hakedisYuzdesi") if son_hakedis else 0,
                             "denetimSayisi": denetim_sayisi
                         })
-            except:
+            except Exception:
                 pass
     
     return rapor
