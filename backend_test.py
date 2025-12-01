@@ -221,7 +221,7 @@ class ConstructionInspectionAPITester:
             'POST', 
             'payments', 
             test_payment,
-            201
+            200
         )
         
         payment_id = None
